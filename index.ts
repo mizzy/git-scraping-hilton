@@ -3,9 +3,10 @@ import * as fs from "fs";
 
 const locationMap: Record<string, string> = {
   Fukuoka: "FUKHIHI",
+  Odaiba: "TYOTOHI",
 };
 
-const location: string = "Fukuoka";
+const location: string = "Odaiba";
 const arrivalDate: string = "2025-02-17";
 const departureDate: string = "2025-02-18";
 
