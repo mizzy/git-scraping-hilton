@@ -1,19 +1,11 @@
 import { firefox } from "playwright";
 import * as fs from "fs";
-
-const locationMap: Record<string, string> = {
-  Fukuoka: "FUKHIHI",
-  Odaiba: "TYOTOHI",
-};
-
-const location: string = "Odaiba";
-const arrivalDate: string = "2025-02-17";
-const departureDate: string = "2025-02-18";
+import { config, locationMap } from "./config";
 
 const url = new URL("https://www.hilton.com/en/book/reservation/rooms");
-url.searchParams.set("ctyhocn", locationMap[location]);
-url.searchParams.set("arrivalDate", arrivalDate);
-url.searchParams.set("departureDate", departureDate);
+url.searchParams.set("ctyhocn", locationMap[config["location"]]);
+url.searchParams.set("arrivalDate", config["arrivalDate"]);
+url.searchParams.set("departureDate", config["departureDate"]);
 url.searchParams.set("redeemPts", "true");
 url.searchParams.set("room1NumAdults", "1");
 
@@ -48,9 +40,9 @@ const sleep = (msec: number) =>
 
   const jsonOutput = JSON.stringify(
     {
-      location,
-      arrivalDate,
-      departureDate,
+      location: config["location"],
+      arrivalDate: config["arrivalDate"],
+      departureDate: config["departureDate"],
       price,
       points,
     },
