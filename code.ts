@@ -1,6 +1,7 @@
 enum HotelLocation {
   Fukuoka = "Fukuoka",
   Odaiba = "Odaiba",
+  Ariake = "Ariake",
 }
 
 type LocationCode = {
@@ -10,6 +11,7 @@ type LocationCode = {
 const locationCodeMap: LocationCode = {
   [HotelLocation.Fukuoka]: "FUKHIHI",
   [HotelLocation.Odaiba]: "TYOTOHI",
+  [HotelLocation.Ariake]: "TYOARDI",
 };
 
 export { HotelLocation, locationCodeMap };

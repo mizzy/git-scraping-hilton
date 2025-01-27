@@ -6,10 +6,20 @@ type Config = {
   departureDate: Date;
 };
 
-const config: Config = {
-  location: HotelLocation.Odaiba,
-  arrivalDate: new Date("2025-03-09"),
-  departureDate: new Date("2025-03-10"),
-};
+type Configs = Config[];
 
-export { config };
+const configs: Configs = [
+  {
+    location: HotelLocation.Odaiba,
+    arrivalDate: new Date("2025-03-09"),
+    departureDate: new Date("2025-03-10"),
+  },
+  {
+    location: HotelLocation.Ariake,
+    arrivalDate: new Date("2025-03-09"),
+    departureDate: new Date("2025-03-10"),
+  },
+];
+
+export { configs };
+export type { Config };

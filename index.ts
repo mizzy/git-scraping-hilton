@@ -1,64 +1,39 @@
-import { firefox } from "playwright";
 import * as fs from "fs";
-import { config } from "./config";
-import { locationCodeMap } from "./code";
+import { configs } from "./config";
+import { get } from "./get";
+import type { Result } from "./get";
 
-const url = new URL("https://www.hilton.com/en/book/reservation/rooms");
-url.searchParams.set("ctyhocn", locationCodeMap[config.location]);
-url.searchParams.set(
-  "arrivalDate",
-  config.arrivalDate.toISOString().split("T")[0],
-);
-url.searchParams.set(
-  "departureDate",
-  config.departureDate.toISOString().split("T")[0],
-);
-url.searchParams.set("redeemPts", "true");
-url.searchParams.set("room1NumAdults", "1");
+const main = async () => {
+  let results: Result[] = [];
 
-const sleep = (msec: number) =>
-  new Promise((resolve) => setTimeout(resolve, msec * 1000));
+  const processConfigs = async () => {
+    const promises = configs.map(async (config) => {
+      try {
+        const result = await get(config);
+        console.log(`Processed config for location: ${config.location}`);
+        return result;
+      } catch (error) {
+        console.error(
+          `Error processing config for location ${config.location}:`,
+          error,
+        );
+        return null;
+      }
+    });
 
-(async () => {
-  const browser = await firefox.launch({
-    headless: true,
-  });
-  const context = await browser.newContext();
-  const page = await context.newPage();
-  await page.goto(url.href);
+    const resultsWithNulls = await Promise.all(promises);
+    results = resultsWithNulls.filter(
+      (result): result is Result => result !== null,
+    );
+  };
 
-  await page.waitForSelector('[data-testid="quickBookPrice"]', {
-    state: "visible",
-    timeout: 10000,
-  });
+  await processConfigs();
 
-  const priceElement = await page.$('[data-testid="quickBookPrice"]');
-  const price = await priceElement?.textContent();
-
-  const pointsElement = await page.$('[data-testid="pamMessaging"]');
-  const pointsString = await pointsElement?.textContent();
-
-  const match = pointsString?.match(/(\d{1,3}(?:,\d{3})*)/);
-
-  let points = "";
-  if (match) {
-    points = match[1];
-  }
-
-  const jsonOutput = JSON.stringify(
-    {
-      location: config.location,
-      arrivalDate: config.arrivalDate.toISOString().split("T")[0],
-      departureDate: config.departureDate.toISOString().split("T")[0],
-      price,
-      points,
-    },
-    null,
-    2,
-  );
-
+  const jsonOutput = JSON.stringify(results, null, 2);
   fs.writeFileSync("result.json", jsonOutput, "utf-8");
+  console.log("result.json has been written successfully.");
+};
 
-  await page.close();
-  await browser.close();
-})();
+main().catch((err) => {
+  console.error("Unexpected error:", err);
+});
