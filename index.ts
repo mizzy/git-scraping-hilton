@@ -1,11 +1,18 @@
 import { firefox } from "playwright";
 import * as fs from "fs";
-import { config, locationMap } from "./config";
+import { config } from "./config";
+import { locationCodeMap } from "./code";
 
 const url = new URL("https://www.hilton.com/en/book/reservation/rooms");
-url.searchParams.set("ctyhocn", locationMap[config["location"]]);
-url.searchParams.set("arrivalDate", config["arrivalDate"]);
-url.searchParams.set("departureDate", config["departureDate"]);
+url.searchParams.set("ctyhocn", locationCodeMap[config.location]);
+url.searchParams.set(
+  "arrivalDate",
+  config.arrivalDate.toISOString().split("T")[0],
+);
+url.searchParams.set(
+  "departureDate",
+  config.departureDate.toISOString().split("T")[0],
+);
 url.searchParams.set("redeemPts", "true");
 url.searchParams.set("room1NumAdults", "1");
 
@@ -40,9 +47,9 @@ const sleep = (msec: number) =>
 
   const jsonOutput = JSON.stringify(
     {
-      location: config["location"],
-      arrivalDate: config["arrivalDate"],
-      departureDate: config["departureDate"],
+      location: config.location,
+      arrivalDate: config.arrivalDate.toISOString().split("T")[0],
+      departureDate: config.departureDate.toISOString().split("T")[0],
       price,
       points,
     },

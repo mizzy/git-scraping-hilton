@@ -1,12 +1,15 @@
-const config: Record<string, string> = {
-  location: "Odaiba",
-  arrivalDate: "2025-02-17",
-  departureDate: "2025-02-18",
+import { HotelLocation } from "./code";
+
+type Config = {
+  location: HotelLocation;
+  arrivalDate: Date;
+  departureDate: Date;
 };
 
-const locationMap: Record<string, string> = {
-  Fukuoka: "FUKHIHI",
-  Odaiba: "TYOTOHI",
+const config: Config = {
+  location: HotelLocation.Odaiba,
+  arrivalDate: new Date("2025-03-09"),
+  departureDate: new Date("2025-03-10"),
 };
 
-export { config, locationMap };
+export { config };
