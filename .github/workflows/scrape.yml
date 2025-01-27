@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   # Set schedule if you want to run this periodically.
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/5 * * * *'
 
 permissions:
   contents: write
