@@ -3,14 +3,14 @@
     "location": "Odaiba",
     "arrivalDate": "2025-03-09",
     "departureDate": "2025-03-10",
-    "price": null,
-    "points": null
+    "price": "¥52,085",
+    "points": "70,000"
   },
   {
     "location": "Ariake",
     "arrivalDate": "2025-03-09",
     "departureDate": "2025-03-10",
-    "price": "¥29,945",
-    "points": "40,000"
+    "price": null,
+    "points": null
   }
 ]
