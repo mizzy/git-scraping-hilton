@@ -38,12 +38,12 @@ const get = async (config: Config): Promise<Result> => {
 
     await page.waitForSelector('[data-testid="quickBookPrice"]', {
       state: "visible",
-      timeout: 10000,
+      timeout: 20000,
     });
 
     await page.waitForSelector('[data-testid="pamMessaging"]', {
       state: "visible",
-      timeout: 10000,
+      timeout: 20000,
     });
     
     const priceElement = await page.$('[data-testid="quickBookPrice"]');
