@@ -4,7 +4,9 @@ import { get } from "./get";
 import type { Result } from "./get";
 
 const main = async () => {
-  let results: Result[] = [];
+  let results: Result[] = fs.existsSync("result.json")
+    ? JSON.parse(fs.readFileSync("result.json", "utf-8"))
+    : [];
 
   const processConfigs = async () => {
     const promises = configs.map(async (config) => {
@@ -22,9 +24,18 @@ const main = async () => {
     });
 
     const resultsWithNulls = await Promise.all(promises);
-    results = resultsWithNulls.filter(
-      (result): result is Result => result !== null,
-    );
+    for (const result of results) {
+      for (const resultWithNull of resultsWithNulls) {
+        if (
+          result.location == resultWithNull?.location &&
+          result.arrivalDate == resultWithNull.arrivalDate &&
+          result.departureDate == resultWithNull.departureDate
+        ) {
+          result.price = resultWithNull.price;
+          result.points = resultWithNull.points;
+        }
+      }
+    }
   };
 
   await processConfigs();
