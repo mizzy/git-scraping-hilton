@@ -1,9 +1,9 @@
 import { firefox } from "playwright";
 import { Config } from "./config";
-import { locationCodeMap } from "./code";
+import { locationCodeMap, HotelLocation } from "./code";
 
 type Result = {
-  location: string;
+  location: HotelLocation;
   arrivalDate: string;
   departureDate: string;
   price: string | null;
@@ -45,7 +45,7 @@ const get = async (config: Config): Promise<Result> => {
       state: "visible",
       timeout: 20000,
     });
-    
+
     const priceElement = await page.$('[data-testid="quickBookPrice"]');
     price = (await priceElement?.textContent())?.trim() || null;
 
@@ -60,7 +60,7 @@ const get = async (config: Config): Promise<Result> => {
   } catch (error) {
     console.error("Error fetching data:", error);
 
-    await page.screenshot({ path: 'error_screenshot.png' });
+    await page.screenshot({ path: "error_screenshot.png" });
 
     throw error;
   } finally {
