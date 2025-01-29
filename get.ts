@@ -1,6 +1,6 @@
 import { firefox } from "playwright";
-import { Config } from "./config";
-import { locationCodeMap, HotelLocation } from "./code";
+import { locationCodeMap, HotelLocation } from "./config_type";
+import type { Config } from "./config_type";
 
 type Result = {
   location: HotelLocation;

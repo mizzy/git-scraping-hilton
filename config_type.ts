@@ -16,4 +16,13 @@ const locationCodeMap: LocationCode = {
   [HotelLocation.Ariake]: "TYOARDI",
 };
 
+type Config = {
+  location: HotelLocation;
+  arrivalDate: Date;
+  departureDate: Date;
+};
+
+type Configs = Config[];
+
 export { HotelLocation, locationCodeMap };
+export type { Config, Configs };
