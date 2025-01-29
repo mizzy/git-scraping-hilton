@@ -1,12 +1,5 @@
-import { HotelLocation } from "./code";
-
-type Config = {
-  location: HotelLocation;
-  arrivalDate: Date;
-  departureDate: Date;
-};
-
-type Configs = Config[];
+import { HotelLocation } from "./config_type";
+import type { Configs } from "./config_type";
 
 const configs: Configs = [
   {
@@ -22,4 +15,3 @@ const configs: Configs = [
 ];
 
 export { configs };
-export type { Config };
