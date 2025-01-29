@@ -1,8 +1,10 @@
-enum HotelLocation {
-  Fukuoka = "Fukuoka",
-  Odaiba = "Odaiba",
-  Ariake = "Ariake",
-}
+const HotelLocation = {
+  Fukuoka: "Fukuoka",
+  Odaiba: "Odaiba",
+  Ariake: "Ariake",
+} as const;
+
+type HotelLocation = (typeof HotelLocation)[keyof typeof HotelLocation];
 
 type LocationCode = {
   [key in HotelLocation]: string;
