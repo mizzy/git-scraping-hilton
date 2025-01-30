@@ -4,13 +4,17 @@
     "arrivalDate": "2025-03-09",
     "departureDate": "2025-03-10",
     "price": "¥51,894",
-    "points": "70,000"
+    "points": "70,000",
+    "honorsDiscount": "¥48,781",
+    "hpcjDiscount": "¥38,921"
   },
   {
     "location": "Ariake",
     "arrivalDate": "2025-03-09",
     "departureDate": "2025-03-10",
     "price": "¥29,945",
-    "points": "40,000"
+    "points": "40,000",
+    "honorsDiscount": "¥28,152",
+    "hpcjDiscount": "¥22,459"
   }
 ]
