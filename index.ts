@@ -4,10 +4,30 @@ import { get } from "./get";
 import type { Result } from "./get";
 import { formatDate } from "./utils";
 
+const loadResults = (filePath: string): Result[] => {
+  if (!fs.existsSync(filePath)) {
+    return [];
+  }
+
+  try {
+    const rawData: any[] = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+
+    return rawData.map((item) => ({
+      location: item.location,
+      arrivalDate: item.arrivalDate,
+      departureDate: item.departureDate,
+      honorsDiscount: item.honorsDiscount ?? null,
+      hpcjDiscount: item.hpcjDiscount ?? null,
+      points: item.points ?? null,
+    }));
+  } catch (error) {
+    console.error("Error parsing JSON:", error);
+    return [];
+  }
+};
+
 const main = async () => {
-  let prevResults: Result[] = fs.existsSync("result.json")
-    ? JSON.parse(fs.readFileSync("result.json", "utf-8"))
-    : [];
+  let prevResults: Result[] = loadResults("result.json");
 
   const filteredResults: Result[] = prevResults.filter((result) =>
     configs.some(
