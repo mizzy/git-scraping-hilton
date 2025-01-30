@@ -2,11 +2,41 @@ import * as fs from "fs";
 import { configs } from "./config";
 import { get } from "./get";
 import type { Result } from "./get";
+import { formatDate } from "./utils";
 
 const main = async () => {
-  let results: Result[] = fs.existsSync("result.json")
+  let prevResults: Result[] = fs.existsSync("result.json")
     ? JSON.parse(fs.readFileSync("result.json", "utf-8"))
     : [];
+
+  const filteredResults: Result[] = prevResults.filter((result) =>
+    configs.some(
+      (config) =>
+        result.location === config.location &&
+        result.arrivalDate === formatDate(config.arrivalDate) &&
+        result.departureDate === formatDate(config.departureDate),
+    ),
+  );
+
+  const configsToAdd: Result[] = configs
+    .filter(
+      (config) =>
+        !prevResults.some(
+          (result) =>
+            result.location === config.location &&
+            result.arrivalDate === formatDate(config.arrivalDate) &&
+            result.departureDate === formatDate(config.departureDate),
+        ),
+    )
+    .map((config) => ({
+      location: config.location,
+      arrivalDate: formatDate(config.arrivalDate),
+      departureDate: formatDate(config.departureDate),
+      price: null,
+      points: null,
+    }));
+
+  const results: Result[] = [...filteredResults, ...configsToAdd];
 
   const processConfigs = async () => {
     const promises = configs.map(async (config) => {
