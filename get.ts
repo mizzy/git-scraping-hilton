@@ -7,7 +7,8 @@ type Result = {
   location: HotelLocation;
   arrivalDate: string;
   departureDate: string;
-  price: string | null;
+  honorsDiscount: string | null;
+  hpcjDiscount: string | null;
   points: string | null;
 };
 
@@ -25,33 +26,50 @@ const get = async (config: Config): Promise<Result> => {
   const context = await browser.newContext();
   const page = await context.newPage();
 
-  let price: string | null = null;
+  let honorsDiscount: string | null = null;
+  let hpcjDiscount: string | null = null;
   let points: string | null = null;
 
   try {
     await page.goto(url.href);
 
-    await page.waitForSelector('[data-testid="quickBookPrice"]', {
+    await page.waitForSelector('[data-testid="moreRatesButton"]', {
       state: "visible",
       timeout: 20000,
     });
 
-    await page.waitForSelector('[data-testid="pamMessaging"]', {
+    await page.locator('[data-testid="moreRatesButton"] >> nth=0').click();
+
+    await page.waitForSelector('[data-testid="pamRatesBlock"]', {
       state: "visible",
       timeout: 20000,
     });
 
-    const priceElement = await page.$('[data-testid="quickBookPrice"]');
-    price = (await priceElement?.textContent())?.trim() || null;
+    // Flexible Rate Honors Discount
+    const honorsDiscountElement = await page.$(
+      '[data-testid="honorsDiscountBookCTA"]',
+    );
+    honorsDiscount = (await honorsDiscountElement?.textContent())?.trim()!;
+    honorsDiscount = honorsDiscount.match(/(¥[\d,]+)/)?.[1]!;
 
-    const pointsElement = await page.$('[data-testid="pamMessaging"]');
-    const pointsString = (await pointsElement?.textContent())?.trim();
+    // HPCJ Discount (Flexible Rate * 0.75)
+    const standardPriceElement = await page.$(
+      '[data-testid="standardPriceBookCTA"]',
+    );
+    let standardPrice = (await standardPriceElement?.textContent())?.trim()!;
+    standardPrice = standardPrice.match(/(¥[\d,]+)/)?.[1]!;
 
-    const match = pointsString?.match(/(\d{1,3}(?:,\d{3})*)/);
+    const numericString = standardPrice.replace(/[¥,]/g, "");
+    const numberValue = parseFloat(numericString.trim()!);
+    const multipliedValue = Math.round(numberValue * 0.75);
+    hpcjDiscount = "¥" + multipliedValue.toLocaleString("ja-JP");
 
-    if (match) {
-      points = match[1];
-    }
+    // Points
+    const pointsElement = await page.$(
+      '[data-testid="pamRatesBlock"] .sr-only',
+    );
+    points = (await pointsElement?.textContent())?.trim()!;
+    points = points.match(/([\d,]+)/)?.[1]!;
   } catch (error) {
     console.error("Error fetching data:", error);
 
@@ -67,7 +85,8 @@ const get = async (config: Config): Promise<Result> => {
     location: config.location,
     arrivalDate: formatDate(config.arrivalDate),
     departureDate: formatDate(config.departureDate),
-    price,
+    honorsDiscount: honorsDiscount,
+    hpcjDiscount: hpcjDiscount,
     points,
   };
 };

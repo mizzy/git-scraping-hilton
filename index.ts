@@ -32,7 +32,8 @@ const main = async () => {
       location: config.location,
       arrivalDate: formatDate(config.arrivalDate),
       departureDate: formatDate(config.departureDate),
-      price: null,
+      honorsDiscount: null,
+      hpcjDiscount: null,
       points: null,
     }));
 
@@ -61,7 +62,8 @@ const main = async () => {
           result.arrivalDate == resultWithNull.arrivalDate &&
           result.departureDate == resultWithNull.departureDate
         ) {
-          result.price = resultWithNull.price;
+          result.honorsDiscount = resultWithNull.honorsDiscount;
+          result.hpcjDiscount = resultWithNull.hpcjDiscount;
           result.points = resultWithNull.points;
         }
       }
