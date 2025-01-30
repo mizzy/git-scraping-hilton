@@ -1,6 +1,7 @@
 import { firefox } from "playwright";
 import { locationCodeMap, HotelLocation } from "./config_type";
 import type { Config } from "./config_type";
+import { formatDate } from "./utils";
 
 type Result = {
   location: HotelLocation;
@@ -13,14 +14,8 @@ type Result = {
 const get = async (config: Config): Promise<Result> => {
   const url = new URL("https://www.hilton.com/en/book/reservation/rooms");
   url.searchParams.set("ctyhocn", locationCodeMap[config.location]);
-  url.searchParams.set(
-    "arrivalDate",
-    config.arrivalDate.toISOString().split("T")[0],
-  );
-  url.searchParams.set(
-    "departureDate",
-    config.departureDate.toISOString().split("T")[0],
-  );
+  url.searchParams.set("arrivalDate", formatDate(config.arrivalDate));
+  url.searchParams.set("departureDate", formatDate(config.departureDate));
   url.searchParams.set("redeemPts", "true");
   url.searchParams.set("room1NumAdults", "1");
 
@@ -70,8 +65,8 @@ const get = async (config: Config): Promise<Result> => {
 
   return {
     location: config.location,
-    arrivalDate: config.arrivalDate.toISOString().split("T")[0],
-    departureDate: config.departureDate.toISOString().split("T")[0],
+    arrivalDate: formatDate(config.arrivalDate),
+    departureDate: formatDate(config.departureDate),
     price,
     points,
   };
