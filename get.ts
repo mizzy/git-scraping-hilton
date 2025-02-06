@@ -35,14 +35,14 @@ const get = async (config: Config): Promise<Result> => {
 
     await page.waitForSelector('[data-testid="moreRatesButton"]', {
       state: "visible",
-      timeout: 20000,
+      timeout: 60000,
     });
 
     await page.locator('[data-testid="moreRatesButton"] >> nth=0').click();
 
     await page.waitForSelector('[data-testid="pamRatesBlock"]', {
       state: "visible",
-      timeout: 20000,
+      timeout: 60000,
     });
 
     // Flexible Rate Honors Discount
