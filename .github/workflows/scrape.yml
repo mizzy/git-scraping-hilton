@@ -3,8 +3,8 @@ on:
   push:
   workflow_dispatch:
   # Set schedule if you want to run this periodically.
-  schedule:
-    - cron: '0 * * * *'
+  # schedule:
+  #   - cron: '0 * * * *'
 
 permissions:
   contents: write
