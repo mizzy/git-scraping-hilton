@@ -1,18 +1,34 @@
 [
   {
-    "location": "Odaiba",
-    "arrivalDate": "2025-03-09",
-    "departureDate": "2025-03-10",
-    "honorsDiscount": "¥48,688",
-    "hpcjDiscount": "¥38,847",
-    "points": "70,000"
+    "location": "Fukuoka",
+    "arrivalDate": "2025-11-12",
+    "departureDate": "2025-11-14",
+    "honorsDiscount": "¥25,068",
+    "hpcjDiscount": "¥20,001",
+    "points": "45,000"
   },
   {
-    "location": "Ariake",
-    "arrivalDate": "2025-03-09",
-    "departureDate": "2025-03-10",
-    "honorsDiscount": "¥33,136",
-    "hpcjDiscount": "¥26,357",
-    "points": "40,000"
+    "location": "Fukuoka",
+    "arrivalDate": "2025-11-13",
+    "departureDate": "2025-11-14",
+    "honorsDiscount": "¥25,493",
+    "hpcjDiscount": "¥20,340",
+    "points": "46,000"
+  },
+  {
+    "location": "Fukuoka",
+    "arrivalDate": "2025-11-16",
+    "departureDate": "2025-11-17",
+    "honorsDiscount": "¥39,514",
+    "hpcjDiscount": "¥31,527",
+    "points": "60,000"
+  },
+  {
+    "location": "Fukuoka",
+    "arrivalDate": "2025-11-16",
+    "departureDate": "2025-11-18",
+    "honorsDiscount": "¥32,344",
+    "hpcjDiscount": "¥25,807",
+    "points": "60,000"
   }
 ]
