@@ -4,6 +4,11 @@ import type {Configs} from "./config_type";
 const configs: Configs = [
     {
         location: HotelLocation.Fukuoka,
+        arrivalDate: new Date("2025-11-11"),
+        departureDate: new Date("2025-11-14"),
+    },
+    {
+        location: HotelLocation.Fukuoka,
         arrivalDate: new Date("2025-11-12"),
         departureDate: new Date("2025-11-14"),
     },
