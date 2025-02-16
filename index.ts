@@ -59,6 +59,19 @@ const main = async () => {
 
   const results: Result[] = [...filteredResults, ...configsToAdd];
 
+  const configOrder = new Map(
+    configs.map((config, index) => [
+      `${config.location}_${formatDate(config.arrivalDate)}_${formatDate(config.departureDate)}`,
+      index,
+    ]),
+  );
+
+  results.sort((a, b) => {
+    const keyA = `${a.location}_${a.arrivalDate}_${a.departureDate}`;
+    const keyB = `${b.location}_${b.arrivalDate}_${b.departureDate}`;
+    return (configOrder.get(keyA) ?? 0) - (configOrder.get(keyB) ?? 0);
+  });
+
   const processConfigs = async () => {
     const promises = configs.map(async (config) => {
       try {
