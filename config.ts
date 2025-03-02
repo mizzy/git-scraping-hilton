@@ -5,12 +5,12 @@ const configs: Configs = [
     {
         location: HotelLocation.Fukuoka,
         arrivalDate: new Date("2025-11-11"),
-        departureDate: new Date("2025-11-14"),
+        departureDate: new Date("2025-11-12"),
     },
     {
         location: HotelLocation.Fukuoka,
         arrivalDate: new Date("2025-11-12"),
-        departureDate: new Date("2025-11-14"),
+        departureDate: new Date("2025-11-13"),
     },
     {
         location: HotelLocation.Fukuoka,
@@ -24,9 +24,8 @@ const configs: Configs = [
     },
     {
         location: HotelLocation.Fukuoka,
-        arrivalDate: new Date("2025-11-16"),
+        arrivalDate: new Date("2025-11-17"),
         departureDate: new Date("2025-11-18"),
-    },
 ];
 
 export {configs};
