@@ -1,14 +1,6 @@
 [
   {
     "location": "Fukuoka",
-    "arrivalDate": "2025-11-11",
-    "departureDate": "2025-11-12",
-    "honorsDiscount": "¥22,837",
-    "hpcjDiscount": "¥18,221",
-    "points": "43,000"
-  },
-  {
-    "location": "Fukuoka",
     "arrivalDate": "2025-11-12",
     "departureDate": "2025-11-13",
     "honorsDiscount": "¥23,581",
