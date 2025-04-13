@@ -73,7 +73,7 @@ const get = async (config: Config): Promise<Result> => {
   } catch (error) {
     console.error("Error fetching data:", error);
 
-    await page.screenshot({ path: "error_screenshot.png" });
+    // await page.screenshot({ path: "error_screenshot.png" });
 
     throw error;
   } finally {
