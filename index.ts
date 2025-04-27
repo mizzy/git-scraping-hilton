@@ -16,8 +16,8 @@ const loadResults = (filePath: string): Result[] => {
       location: item.location,
       arrivalDate: item.arrivalDate,
       departureDate: item.departureDate,
-      honorsDiscount: item.honorsDiscount ?? null,
-      hpcjDiscount: item.hpcjDiscount ?? null,
+      // honorsDiscount: item.honorsDiscount ?? null,
+      // hpcjDiscount: item.hpcjDiscount ?? null,
       points: item.points ?? null,
     }));
   } catch (error) {
@@ -52,8 +52,8 @@ const main = async () => {
       location: config.location,
       arrivalDate: formatDate(config.arrivalDate),
       departureDate: formatDate(config.departureDate),
-      honorsDiscount: null,
-      hpcjDiscount: null,
+      //honorsDiscount: null,
+      //hpcjDiscount: null,
       points: null,
     }));
 
@@ -95,8 +95,8 @@ const main = async () => {
           result.arrivalDate == resultWithNull.arrivalDate &&
           result.departureDate == resultWithNull.departureDate
         ) {
-          result.honorsDiscount = resultWithNull.honorsDiscount;
-          result.hpcjDiscount = resultWithNull.hpcjDiscount;
+          // result.honorsDiscount = resultWithNull.honorsDiscount;
+          // result.hpcjDiscount = resultWithNull.hpcjDiscount;
           result.points = resultWithNull.points;
         }
       }
