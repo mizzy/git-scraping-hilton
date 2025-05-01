@@ -17,7 +17,7 @@ const loadResults = (filePath: string): Result[] => {
       arrivalDate: item.arrivalDate,
       departureDate: item.departureDate,
       // honorsDiscount: item.honorsDiscount ?? null,
-      // hpcjDiscount: item.hpcjDiscount ?? null,
+      hpcjDiscount: item.hpcjDiscount ?? null,
       points: item.points ?? null,
     }));
   } catch (error) {
@@ -53,7 +53,7 @@ const main = async () => {
       arrivalDate: formatDate(config.arrivalDate),
       departureDate: formatDate(config.departureDate),
       //honorsDiscount: null,
-      //hpcjDiscount: null,
+      hpcjDiscount: null,
       points: null,
     }));
 
@@ -96,7 +96,7 @@ const main = async () => {
           result.departureDate == resultWithNull.departureDate
         ) {
           // result.honorsDiscount = resultWithNull.honorsDiscount;
-          // result.hpcjDiscount = resultWithNull.hpcjDiscount;
+          result.hpcjDiscount = resultWithNull.hpcjDiscount;
           result.points = resultWithNull.points;
         }
       }

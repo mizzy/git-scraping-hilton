@@ -8,7 +8,7 @@ type Result = {
   arrivalDate: string;
   departureDate: string;
   // honorsDiscount: string | null;
-  // hpcjDiscount: string | null;
+  hpcjDiscount: string | null;
   points: string | null;
 };
 
@@ -86,7 +86,7 @@ const get = async (config: Config): Promise<Result> => {
     arrivalDate: formatDate(config.arrivalDate),
     departureDate: formatDate(config.departureDate),
     // honorsDiscount: honorsDiscount,
-    // hpcjDiscount: hpcjDiscount,
+    hpcjDiscount: hpcjDiscount,
     points,
   };
 };
