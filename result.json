@@ -1,6 +1,13 @@
 [
   {
     "location": "Ariake",
+    "arrivalDate": "2025-07-10",
+    "departureDate": "2025-07-11",
+    "hpcjDiscount": "¥41,612",
+    "points": "40,000"
+  },
+  {
+    "location": "Ariake",
     "arrivalDate": "2025-07-11",
     "departureDate": "2025-07-13",
     "hpcjDiscount": "¥27,544",
