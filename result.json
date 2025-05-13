@@ -1,5 +1,12 @@
 [
   {
+    "location": "Ariake",
+    "arrivalDate": "2025-07-11",
+    "departureDate": "2025-07-13",
+    "hpcjDiscount": "¥27,544",
+    "points": "40,000"
+  },
+  {
     "location": "Fukuoka",
     "arrivalDate": "2025-11-12",
     "departureDate": "2025-11-13",
