@@ -1,5 +1,12 @@
 [
   {
+    "location": "Odaiba",
+    "arrivalDate": "2025-07-10",
+    "departureDate": "2025-07-11",
+    "hpcjDiscount": "¥36,992",
+    "points": "70,000"
+  },
+  {
     "location": "Ariake",
     "arrivalDate": "2025-07-10",
     "departureDate": "2025-07-11",
@@ -18,7 +25,7 @@
     "arrivalDate": "2025-11-12",
     "departureDate": "2025-11-13",
     "hpcjDiscount": "¥21,188",
-    "points": "51,000"
+    "points": "50,000"
   },
   {
     "location": "Fukuoka",
