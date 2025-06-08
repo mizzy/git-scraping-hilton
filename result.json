@@ -17,7 +17,7 @@
     "location": "Ariake",
     "arrivalDate": "2025-07-11",
     "departureDate": "2025-07-13",
-    "hpcjDiscount": "¥21,035",
+    "hpcjDiscount": "¥20,711",
     "points": "40,000"
   },
   {
@@ -31,14 +31,14 @@
     "location": "Fukuoka",
     "arrivalDate": "2025-11-13",
     "departureDate": "2025-11-14",
-    "hpcjDiscount": "¥18,226",
-    "points": "51,000"
+    "hpcjDiscount": "¥18,658",
+    "points": "53,000"
   },
   {
     "location": "Fukuoka",
     "arrivalDate": "2025-11-16",
     "departureDate": "2025-11-17",
-    "hpcjDiscount": "¥21,539",
-    "points": "60,000"
+    "hpcjDiscount": "¥20,891",
+    "points": "59,000"
   }
 ]
